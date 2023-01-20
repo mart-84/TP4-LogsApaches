@@ -6,10 +6,9 @@ using namespace std;
 
 #include "AnalyseurLogs.h"
 
-
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
-    //utypedef list<pair<string, list<pair<string &, int>>>> Graph;
+    // typedef list<pair<string, list<pair<string &, int>>>> Graph;
 
     ifstream fichier("test.log");
     AnalyseurLogs anal(fichier);

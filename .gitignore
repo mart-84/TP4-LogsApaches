@@ -1,6 +1,6 @@
 *.exe
 main
-trajet
+analog
 *.o
 makefile_data/squelettes
 *.pdf

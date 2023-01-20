@@ -39,7 +39,9 @@ void AnalyseurLogs::LireFichier()
 // Algorithme :
 //
 {
-    while(!fichierLog.eof())
+    // Le peek permet de vérifier le prochain caractère et de mettre à jour les flags
+    // sans l'enlever du flux
+    while (fichierLog.peek(), !fichierLog.eof())
     {
         lireLigne();
     }
@@ -75,42 +77,44 @@ void AnalyseurLogs::lireLigne()
 // Algorithme :
 //
 {
-    LigneLog newLigne;
+    LigneLog ligne;
 
-    newLigne.ip = lireChamp();
-    newLigne.logname = lireChamp();
-    newLigne.authenticatedUser = lireChamp();
-    fichierLog.ignore();
-    
-    newLigne.date.jour = stoi(lireChamp('/'));
-    newLigne.date.mois = lireChamp('/');
-    newLigne.date.annee = stoi(lireChamp(':'));
-    newLigne.date.heure = stoi(lireChamp(':'));
-    newLigne.date.minute = stoi(lireChamp(':'));
-    newLigne.date.seconde = stoi(lireChamp());
-    fichierLog.ignore();
-    newLigne.date.fuseau = stoi(lireChamp(']'));
+    getline(fichierLog, ligne.ip, ' ');
+    getline(fichierLog, ligne.logname, ' ');
+    getline(fichierLog, ligne.authenticatedUser, ' ');
 
-    fichierLog.ignore(2);
+    fichierLog.ignore(); // caractère '['
 
-    newLigne.methode = lireChamp();
-    newLigne.cible = lireChamp();
-    newLigne.versionProtocol = lireChamp('"');
-    fichierLog.ignore();
+    ligne.date.jour = stoi(lireChamp('/'));
+    getline(fichierLog, ligne.date.mois, '/');
+    ligne.date.annee = stoi(lireChamp(':'));
+    ligne.date.heure = stoi(lireChamp(':'));
+    ligne.date.minute = stoi(lireChamp(':'));
+    ligne.date.seconde = stoi(lireChamp());
+    ligne.date.fuseau = stoi(lireChamp(']'));
 
-    newLigne.status = stoi(lireChamp());
-    string tailleRep = lireChamp();
-    if(tailleRep == "-") {newLigne.tailleReponse = 0;}
-    else {newLigne.tailleReponse = stoi(tailleRep);}
-    fichierLog.ignore();
+    fichierLog.ignore(2); // caractères ' ' et '"'
 
-    newLigne.source = lireChamp('"');
-    fichierLog.ignore(2);
-    newLigne.userAgent = lireChamp('"');
-    fichierLog.ignore(2);
+    getline(fichierLog, ligne.methode, ' ');
+    getline(fichierLog, ligne.cible, ' ');
+    getline(fichierLog, ligne.versionProtocol, '"');
 
-    lignes.push_back(newLigne);
+    fichierLog.ignore(); // caractère espace
 
+    ligne.status = stoi(lireChamp());
+    string tailleRep;
+    getline(fichierLog, tailleRep, ' ');
+    ligne.tailleReponse = tailleRep == "-" ? 0 : stoi(tailleRep);
+
+    fichierLog.ignore(); // caractère '"'
+    getline(fichierLog, ligne.source, '"');
+    fichierLog.ignore(2); // caractères ' ' et '"'
+    getline(fichierLog, ligne.userAgent, '"');
+
+    string buffer;
+    getline(fichierLog, buffer); // permet de "vider" ce qu'il reste de la ligne 'espace vide, retour à la ligne, ...)
+
+    lignes.push_back(ligne);
 } //----- Fin de lireLigne
 
 string AnalyseurLogs::lireChamp(char separateur)
