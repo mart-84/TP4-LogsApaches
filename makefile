@@ -54,7 +54,7 @@ $(EXEC) : depend $(OBJ:.o=$(SUFFIX).o)
 
 
 # Cibles spéciales qui ne correspondent pas à des fichiers
-.PHONY : all debug run memcheck rebuild clean clear full_clean depend 
+.PHONY : all debug run memcheck rebuild clean clear full_clean depend test
 
 rebuild : clean all
 
@@ -69,18 +69,20 @@ endif
 memcheck:
 	$(MEMCHECK) $(EXEC)
 
-ifneq ($(or $(findstring test, $(MAKECMDGOALS)), $(findstring clean, $(MAKECMDGOALS))),)
-include makefile_data$(PS)testing.make
-endif
-
 clean clear :
 	$(RM) $(EXEC) $(OBJ) $(OBJ:.o=.d.o) $(TEST_EXEC) $(TEST_OBJ) $(TEST_OBJ:.o=.d.o) \
 		$(subst /,$(PS),$(TEST_MAIN_OBJ)) $(subst /,$(PS),$(TEST_MAIN_OBJ:.o=.d.o)) core \
-		> $(NULL_FILE) 2>&1
+		bin$(PS)$(EXEC) > $(NULL_FILE) 2>&1
 	$(ECHO) ======= CLEANING : OK =======
 
 full_clean: clean
 	$(RM) makefile_data$(PS)dependencies > $(NULL_FILE) 2>&1
+
+test: all
+	-@mkdir bin > $(NULL_FILE) 2>&1 ||:
+	@$(CP) $(EXEC) bin$(PS)$(EXEC) > $(NULL_FILE) 2>&1
+	$(ECHO) ======= STARTING TESTS =======
+	cd Tests && ./mktest.sh
 
 
 ifneq ($(findstring create, $(MAKECMDGOALS)),)
