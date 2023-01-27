@@ -13,6 +13,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <map>
+#include <iostream>
 
 //------------------------------------------------------ Include personnel
 #include "Statistiques.h"
@@ -34,9 +35,9 @@ void Statistiques::CalculerStatistiques()
 {
     for (list<LigneLog>::const_iterator it = donnees.cbegin(); it != donnees.cend(); ++it)
     {
-        DocumentInfos &info(graphStat[it->cible]);
+        DocumentInfos &info(graphStat[nettoyerUrl(it->cible)]);
         ++info.first;
-        ++info.second[retirerBaseUrl(it->source)];
+        ++info.second[nettoyerUrl(it->source)];
         // normalement ça marche, donc on touche pas
     }
 } //----- Fin de CalculerStatistiques
@@ -96,15 +97,21 @@ Statistiques::~Statistiques()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-string Statistiques::retirerBaseUrl(const string & url)
+string Statistiques::nettoyerUrl(const string & url)
 // Algorithme :
 //
 {
-    if (url.rfind(baseUrl, 0) == 0)
+    string cleanUrl(url);
+    size_t pos = cleanUrl.find('?', 0);
+    if (pos != string::npos)
     {
-        return url.substr(baseUrl.size());
+        cleanUrl = url.substr(0, pos);
     }
-    return url;
+    if (cleanUrl.find(baseUrl, 0) == 0)
+    {
+        cleanUrl = cleanUrl.substr(baseUrl.size());
+    }
+    return cleanUrl;
 } //----- Fin de retirerBaseUrl
 
 

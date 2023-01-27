@@ -69,7 +69,7 @@ public:
 
 protected:
     //----------------------------------------------------- Méthodes protégées
-    string retirerBaseUrl(const string &);
+    string nettoyerUrl(const string &);
 
     //----------------------------------------------------- Attributs protégés
     const list<LigneLog> & donnees;

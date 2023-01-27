@@ -24,7 +24,7 @@ void test1() {
 
 int main(int argc, char **argv)
 {
-    ifstream fichier("test.log");
+    ifstream fichier("anonyme.log");
     AnalyseurLogs anal(fichier);
     anal.LireFichier();
 
