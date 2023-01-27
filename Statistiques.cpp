@@ -107,6 +107,11 @@ string Statistiques::nettoyerUrl(const string & url)
     {
         cleanUrl = url.substr(0, pos);
     }
+    pos = cleanUrl.find(';', 0);
+    if (pos != string::npos)
+    {
+        cleanUrl = url.substr(0, pos);
+    }
     if (cleanUrl.find(baseUrl, 0) == 0)
     {
         cleanUrl = cleanUrl.substr(baseUrl.size());
