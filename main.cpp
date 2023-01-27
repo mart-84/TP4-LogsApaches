@@ -1,21 +1,37 @@
-#include <list>
-#include <string>
 #include <iostream>
 #include <fstream>
 using namespace std;
 
 #include "AnalyseurLogs.h"
+#include "GenerateurGraphe.h"
+#include "Statistiques.h"
+
+void test1() {
+    ifstream fichier("anonyme.log");
+    AnalyseurLogs anal(fichier);
+    anal.LireFichier();
+
+    Statistiques stat(anal.GetLogs());
+    stat.CalculerStatistiques();
+    auto result = stat.GetTop10();
+    for (multimap<int, string>::reverse_iterator it = result.rbegin();
+         it != result.rend();
+         ++it)
+    {
+        cout << it->second << "\t " << it->first << " hits" << endl;
+    }
+}
 
 int main(int argc, char **argv)
 {
-    // typedef list<pair<string, list<pair<string &, int>>>> Graph;
-
     ifstream fichier("test.log");
     AnalyseurLogs anal(fichier);
     anal.LireFichier();
-    auto logs = anal.GetLogs();
-    for (auto const &log : logs)
-    {
-        cout << log << endl;
-    }
+
+    Statistiques stat(anal.GetLogs());
+    stat.CalculerStatistiques();
+
+    ofstream o("graph.dot");
+    GenerateurGraphe gg(o, stat.GetGraph());
+    gg.ExporterGraphe();
 }

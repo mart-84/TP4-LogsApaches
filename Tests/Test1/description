@@ -1,1 +1,3 @@
-Ce test permet de vérifier la production d'un fichier en sortie du programme testé
+Test de l'analyseur des logs, qui lit le fichier et crée la liste de LigneLog
+
+Test 1 : test de ...

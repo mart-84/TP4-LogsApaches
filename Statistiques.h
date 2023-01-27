@@ -1,32 +1,38 @@
 /*************************************************************************
-                           AnalyseurLogs  -  description
+                           Statistiques  -  description
                              -------------------
-    début                : 20/01/2023
+    début                : 27/01/2023
     copyright            : (C) 2023 par Martin Bonnefoy, Ambre Hutier
     e-mail               : martin.bonnefoy@insa-lyon.fr; ambre.hutier@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <AnalyseurLogs> (fichier AnalyseurLogs.h) ----------------
-#if !defined(ANALYSEURLOGS_H)
-#define ANALYSEURLOGS_H
+//---------- Interface de la classe <Statistiques> (fichier Statistiques.h) ----------------
+#if !defined(STATISTIQUES_H)
+#define STATISTIQUES_H
 
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;
-#include <fstream>
 #include <list>
+#include <map>
 #include "LigneLog.h"
+#include "Graphe.h"
 
 //------------------------------------------------------------- Constantes
+const string baseUrl = "http://intranet-if.insa-lyon.fr";
 
 //------------------------------------------------------------------ Types
+// Graphe par liste d'adjacence
+typedef unordered_map<string, int> Precedents;      // Documents desquels on arrive (sources) + pondérations
+typedef pair<int, Precedents> DocumentInfos;        // Total des hits + liste des documents
+typedef unordered_map<string, DocumentInfos> Graph; // Stat d'un document : chaque doc (cible) + ses infos
 
 //------------------------------------------------------------------------
-// Rôle de la classe <AnalyseurLogs>
+// Rôle de la classe <Statistiques>
 //
 //
 //------------------------------------------------------------------------
 
-class AnalyseurLogs
+class Statistiques
 {
     //----------------------------------------------------------------- PUBLIC
 
@@ -38,28 +44,22 @@ public:
     // Contrat :
     //
 
-    list<LigneLog> &GetLogs();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    void CalculerStatistiques();
 
-    void LireFichier();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    multimap<int, string> GetTop10() const;
+
+    const Graph & GetGraph() const;
 
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur
-    AnalyseurLogs(ifstream &fichier);
+    Statistiques(const list<LigneLog> &);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~AnalyseurLogs();
+    virtual ~Statistiques();
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,15 +69,13 @@ public:
 
 protected:
     //----------------------------------------------------- Méthodes protégées
-    void lireLigne();
-
-    string lireChamp(char separateur = ' ');
+    string retirerBaseUrl(const string &);
 
     //----------------------------------------------------- Attributs protégés
-    list<LigneLog> lignes; 
-    ifstream &fichierLog;
+    const list<LigneLog> & donnees;
+    Graph graphStat;
 };
 
-//-------------------------------- Autres définitions dépendantes de <AnalyseurLogs>
+//-------------------------------- Autres définitions dépendantes de <Statistiques>
 
-#endif // ANALYSEURLOGS_H
+#endif // STATISTIQUES_H

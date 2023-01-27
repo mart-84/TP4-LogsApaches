@@ -28,7 +28,7 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-list<LigneLog> AnalyseurLogs::GetLogs()
+list<LigneLog> & AnalyseurLogs::GetLogs()
 // Algorithme :
 //
 {

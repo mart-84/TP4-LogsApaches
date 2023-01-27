@@ -11,7 +11,7 @@ endif
 
 MAIN = main
 EXEC = analog
-INT = LigneLog.h AnalyseurLogs.h
+INT = LigneLog.h AnalyseurLogs.h Statistiques.h GenerateurGraphe.h
 REAL = $(INT:.h=.c)
 OBJ = $(INT:.h=.o) $(MAIN).o
 
@@ -82,7 +82,7 @@ test: all
 	-@mkdir bin > $(NULL_FILE) 2>&1 ||:
 	@$(CP) $(EXEC) bin$(PS)$(EXEC) > $(NULL_FILE) 2>&1
 	$(ECHO) ======= STARTING TESTS =======
-	cd Tests && ./mktest.sh
+	cd Tests; ./mktest.sh
 
 
 ifneq ($(findstring create, $(MAKECMDGOALS)),)

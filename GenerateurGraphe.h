@@ -1,32 +1,31 @@
 /*************************************************************************
-                           AnalyseurLogs  -  description
+                           GenerateurGraphe  -  description
                              -------------------
-    début                : 20/01/2023
+    début                : 27/01/2023
     copyright            : (C) 2023 par Martin Bonnefoy, Ambre Hutier
     e-mail               : martin.bonnefoy@insa-lyon.fr; ambre.hutier@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <AnalyseurLogs> (fichier AnalyseurLogs.h) ----------------
-#if !defined(ANALYSEURLOGS_H)
-#define ANALYSEURLOGS_H
+//---------- Interface de la classe <GenerateurGraphe> (fichier GenerateurGraphe.h) ----------------
+#if !defined(GENERATEURGRAPHE_H)
+#define GENERATEURGRAPHE_H
 
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;
 #include <fstream>
-#include <list>
-#include "LigneLog.h"
+#include "Graphe.h"
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <AnalyseurLogs>
+// Rôle de la classe <GenerateurGraphe>
 //
 //
 //------------------------------------------------------------------------
 
-class AnalyseurLogs
+class GenerateurGraphe
 {
     //----------------------------------------------------------------- PUBLIC
 
@@ -38,28 +37,18 @@ public:
     // Contrat :
     //
 
-    list<LigneLog> &GetLogs();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-    void LireFichier();
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    void ExporterGraphe();
 
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur
-    AnalyseurLogs(ifstream &fichier);
+    GenerateurGraphe(ofstream &, const Graph &);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~AnalyseurLogs();
+    virtual ~GenerateurGraphe();
     // Mode d'emploi :
     //
     // Contrat :
@@ -69,15 +58,12 @@ public:
 
 protected:
     //----------------------------------------------------- Méthodes protégées
-    void lireLigne();
-
-    string lireChamp(char separateur = ' ');
 
     //----------------------------------------------------- Attributs protégés
-    list<LigneLog> lignes; 
-    ifstream &fichierLog;
+    ofstream & fichier;
+    const Graph & donnees;
 };
 
-//-------------------------------- Autres définitions dépendantes de <AnalyseurLogs>
+//-------------------------------- Autres définitions dépendantes de <GenerateurGraphe>
 
-#endif // ANALYSEURLOGS_H
+#endif // GENERATEURGRAPHE_H
