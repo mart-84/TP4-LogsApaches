@@ -79,8 +79,6 @@ full_clean: clean
 	$(RM) makefile_data$(PS)dependencies > $(NULL_FILE) 2>&1
 
 test: all
-	-@mkdir bin > $(NULL_FILE) 2>&1 ||:
-	@$(CP) $(EXEC) bin$(PS)$(EXEC) > $(NULL_FILE) 2>&1
 	$(ECHO) ======= STARTING TESTS =======
 	cd Tests; ./mktest.sh
 

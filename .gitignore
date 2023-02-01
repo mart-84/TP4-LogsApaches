@@ -2,7 +2,6 @@
 main
 analog
 *.o
-makefile_data/squelettes
 *.pdf
 .vscode/
 makefile_data/dependencies/*.make

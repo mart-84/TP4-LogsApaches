@@ -1,12 +1,12 @@
 /*************************************************************************
-                           Controleur  -  description
+                           Xxx  -  description
                              -------------------
-    début                : 27/01/2023
-    copyright            : (C) 2023 par Martin Bonnefoy, Ambre Hutier
-    e-mail               : martin.bonnefoy@insa-lyon.fr; ambre.hutier@insa-lyon.fr
+    début                : %DATE%
+    copyright            : (C) %YEAR% par %AUTHOR%
+    e-mail               : %EMAIL%
 *************************************************************************/
 
-//---------- Réalisation de la classe <Controleur> (fichier Controleur.cpp) ------------
+//---------- Réalisation de la classe <Xxx> (fichier Xxx.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,39 +15,56 @@ using namespace std;
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "Controleur.h"
+#include "Xxx.h"
 
 //------------------------------------------------------------- Constantes
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Controleur::Méthode ( liste des paramètres )
+// type Xxx::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
 
 //------------------------------------------------- Surcharge d'opérateurs
+Xxx &Xxx::operator=(const Xxx &autreXxx)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel a l'operateur d'affectation de <Xxx> sur " << this << " et " << &autreXxx << endl;
+#endif
+} //----- Fin de operator =
 
 //-------------------------------------------- Constructeurs - destructeur
-Controleur::Controleur()
+Xxx::Xxx(const Xxx &autreXxx)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Controleur> sur " << this << endl;
+    cout << "Appel au constructeur de copie de <Xxx> sur " << this << " et " << &autreXxx << endl;
 #endif
-} //----- Fin de Controleur
+} //----- Fin de Xxx (constructeur de copie)
 
-Controleur::~Controleur()
+Xxx::Xxx()
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Controleur> sur " << this << endl;
+    cout << "Appel au constructeur de <Xxx> sur " << this << endl;
 #endif
-} //----- Fin de ~Controleur
+} //----- Fin de Xxx
+
+Xxx::~Xxx()
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <Xxx> sur " << this << endl;
+#endif
+} //----- Fin de ~Xxx
 
 //------------------------------------------------------------------ PRIVE
 

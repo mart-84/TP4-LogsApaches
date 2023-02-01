@@ -12,6 +12,7 @@
 
 //-------------------------------------------------------- Include système
 using namespace std;
+#include <iostream>
 
 //------------------------------------------------------ Include personnel
 #include "GenerateurGraphe.h"
