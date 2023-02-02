@@ -138,7 +138,12 @@ void Controleur::afficherTop10(Statistiques & stat)
 
 bool typeInvalide(const LigneLog & logs)
 {
-    string typeFichier = logs.cible.substr(logs.cible.rfind('.'));
+    size_t pos = logs.cible.rfind('.');
+    if (pos == string::npos)
+    {
+        return false;
+    }
+    string typeFichier = logs.cible.substr(pos);
     return !(typeFichier != ".js" && typeFichier != ".css" 
         && typeFichier != ".png" && typeFichier != ".jpg" 
         && typeFichier != ".jpeg" && typeFichier != ".gif" 
