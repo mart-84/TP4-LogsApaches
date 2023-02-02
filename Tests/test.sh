@@ -92,6 +92,7 @@ then
     echo "                                       Stdout      : FAILED"
     resultOut=0
     resultGlobal=0
+    diff -wB -y --side-by-side  temp.txt std.out
   fi
   # clean temporary out file
   rm temp.txt

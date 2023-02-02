@@ -12,7 +12,7 @@ void testFichierNormal()
     AnalyseurLogs anal(fichier);
     anal.LireFichier();
     list<LigneLog> &logs(anal.GetLogs());
-    cout << logs.size() << "lignes" << endl;
+    cout << logs.size() << " lignes" << endl;
     for (auto const &log : logs)
     {
         cout << log << endl;
@@ -27,7 +27,7 @@ void testFichierVide()
     AnalyseurLogs anal(fichier);
     anal.LireFichier();
     list<LigneLog> &logs(anal.GetLogs());
-    cout << logs.size() << "lignes" << endl;
+    cout << logs.size() << " lignes" << endl;
 }
 
 // Description : Lecture d'une ligne avec le nombre d'octets envoyés : -
@@ -38,7 +38,11 @@ void testInformationManquante()
     AnalyseurLogs anal(fichier);
     anal.LireFichier();
     list<LigneLog> &logs(anal.GetLogs());
-    cout << logs.size() << "lignes" << endl;
+    cout << logs.size() << " lignes" << endl;
+    for (auto const &log : logs)
+    {
+        cout << log << endl;
+    }
 }
 
 int main()
