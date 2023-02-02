@@ -1,37 +1,35 @@
 /*************************************************************************
-                           Controleur  -  description
+                           VerificateurCommande  -  description
                              -------------------
-    début                : 27/01/2023
+    début                : 02/02/2023
     copyright            : (C) 2023 par Martin Bonnefoy, Ambre Hutier
     e-mail               : martin.bonnefoy@insa-lyon.fr; ambre.hutier@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Controleur> (fichier Controleur.h) ----------------
-#if !defined(CONTROLEUR_H)
-#define CONTROLEUR_H
+//---------- Interface de la classe <VerificateurCommande> (fichier VerificateurCommande.h) ----------------
+#if !defined(VERIFICATEURCOMMANDE_H)
+#define VERIFICATEURCOMMANDE_H
 
 //--------------------------------------------------- Interfaces utilisées
+#include <string>
 using namespace std;
-
-#include "VerificateurCommande.h"
-#include "LigneLog.h"
-#include "Statistiques.h"
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Controleur>
+// Rôle de la classe <VerificateurCommande>
 //
 //
 //------------------------------------------------------------------------
 
-class Controleur
+class VerificateurCommande
 {
     //----------------------------------------------------------------- PUBLIC
 
 public:
+    friend class Controleur;
     //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
@@ -39,18 +37,20 @@ public:
     // Contrat :
     //
 
-    void Demarrer();
+    operator bool() const;
+
+
 
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur
-    Controleur(VerificateurCommande &);
+    VerificateurCommande(int argc, char** argv);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Controleur();
+    virtual ~VerificateurCommande();
     // Mode d'emploi :
     //
     // Contrat :
@@ -60,22 +60,17 @@ public:
 
 protected:
     //----------------------------------------------------- Méthodes protégées
-    void filtrerLogs();
-
-    void filtrerLogsHeure();
-
-    void filtrerLogsType();
-
-    void genererGraphe(Statistiques &);
-
-    void afficherTop10(Statistiques &);
 
     //----------------------------------------------------- Attributs protégés
-    VerificateurCommande & commande;
-    list<LigneLog> logs;
+    bool estValide = false;
+    string fichierLogs;
+    string fichierGraphe;
+    bool genererGraphe = false;
+    bool exclusion = false;
+    int heure;
+    bool filtrerHeure = false;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Controleur>
-bool typeInvalide(const LigneLog &);
+//-------------------------------- Autres définitions dépendantes de <VerificateurCommande>
 
-#endif // CONTROLEUR_H
+#endif // VERIFICATEURCOMMANDE_H

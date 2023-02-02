@@ -13,9 +13,15 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
+#include <list>
+#include <map>
 
 //------------------------------------------------------ Include personnel
 #include "Controleur.h"
+#include "GenerateurGraphe.h"
+#include "AnalyseurLogs.h"
+#include "Statistiques.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -28,10 +34,37 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+void Controleur::Demarrer()
+{
+    ifstream fichierLogs(commande.fichierLogs);
+    if (!fichierLogs)
+    {
+        cout << "Erreur à l'ouverture du fichier de logs" << endl;
+        return;
+    }
+
+    AnalyseurLogs anal(fichierLogs);
+    anal.LireFichier();
+
+    logs = anal.GetLogs();
+    filtrerLogs();
+
+    Statistiques stat(logs);
+    stat.CalculerStatistiques();
+
+    if(commande.genererGraphe)
+    {
+        genererGraphe(stat);
+    }
+
+    afficherTop10(stat);
+}
+
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
-Controleur::Controleur()
+Controleur::Controleur(VerificateurCommande& cmd)
+    : commande(cmd)
 // Algorithme :
 //
 {
@@ -52,3 +85,62 @@ Controleur::~Controleur()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+void Controleur::filtrerLogs()
+{
+    if(commande.exclusion)
+    {
+        filtrerLogsType();
+    }
+    if(commande.filtrerHeure)
+    {
+        filtrerLogsHeure();
+    }
+}
+
+void Controleur::filtrerLogsType()
+{
+    logs.remove_if(typeInvalide);
+}
+
+void Controleur::filtrerLogsHeure()
+{
+    int horaire(commande.heure);
+    cout << "Warning : only hits between "<<horaire<<"h and "<<horaire+1
+         <<"h have been taken into account"<<endl;
+    logs.remove_if([horaire](const LigneLog & logs){
+        return logs.date.heure != horaire;
+    });
+    
+}
+
+void Controleur::genererGraphe(Statistiques & stat)
+{
+    ofstream o(commande.fichierGraphe);
+    if(!o)
+    {
+        cout<<"Erreur à l'ouverture du fichier de graphe" << endl;
+        return;
+    }
+    GenerateurGraphe gg(o, stat.GetGraph());
+    gg.ExporterGraphe();
+}
+
+void Controleur::afficherTop10(Statistiques & stat)
+{
+    multimap<int, string> result = stat.GetTop10();
+    for (multimap<int, string>::reverse_iterator it = result.rbegin();
+         it != result.rend();
+         ++it)
+    {
+        cout << it->second << "\t " << it->first << " hits" << endl;
+    }
+}
+
+bool typeInvalide(const LigneLog & logs)
+{
+    string typeFichier = logs.cible.substr(logs.cible.rfind('.'));
+    return !(typeFichier != ".js" && typeFichier != ".css" 
+        && typeFichier != ".png" && typeFichier != ".jpg" 
+        && typeFichier != ".jpeg" && typeFichier != ".gif" 
+        && typeFichier != ".ico" && typeFichier != ".bmp");
+}
