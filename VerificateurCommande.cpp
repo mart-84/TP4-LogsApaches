@@ -47,7 +47,7 @@ VerificateurCommande::VerificateurCommande(int argc, char** argv)
 #endif
 if (argc < 2)
 {
-    cout << "Nom du fichier manquant" << endl;
+    cerr << "Nom du fichier manquant" << endl;
     return;
 }
 
@@ -65,12 +65,12 @@ for (int i = 1; i < argc-1; ++i)
         }
         catch (const invalid_argument & ia)
         {
-            cout << "La valeur après le -t n'est pas un entier" << endl;
+            cerr << "La valeur apres le -t n'est pas un entier" << endl;
             return;
         }
         if (h < 0 || h > 23)
         {
-            cout << "L'heure indiquée n'est pas valide" << endl;
+            cerr << "L'heure indiquee n'est pas valide" << endl;
             return;
         }
         heure = h;
@@ -86,7 +86,7 @@ for (int i = 1; i < argc-1; ++i)
         string fichier(argv[i]);
         if (fichier.rfind(".dot") == string::npos)
         {
-            cout << "Le fichier du graphe doit être un .dot" << endl;
+            cerr << "Le fichier du graphe doit etre un .dot" << endl;
             return;
         }
         genererGraphe = true;
@@ -94,7 +94,7 @@ for (int i = 1; i < argc-1; ++i)
     }
     else
     {
-        cout << "Option invalide : " << option << endl;
+        cerr << "Option invalide : " << option << endl;
         return;
     }
 }
@@ -102,7 +102,7 @@ for (int i = 1; i < argc-1; ++i)
 string fichier(argv[argc - 1]);
 if (fichier.rfind(".log") == string::npos)
 {
-    cout << "Le fichier a analyser doit être un .log" << endl;
+    cerr << "Le fichier a analyser doit etre un .log" << endl;
     return;
 }
 fichierLogs = fichier;

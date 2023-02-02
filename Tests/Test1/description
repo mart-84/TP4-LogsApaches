@@ -1,3 +1,13 @@
-Test de l'analyseur des logs, qui lit le fichier et crée la liste de LigneLog
+Test 1 : Test de l'analyseur des logs, qui lit le fichier et crée la liste de LigneLog
 
-Test 1 : test de ...
+Test 1.1 : testFichierNormal
+Description : Lecture du fichier test.log (2 lignes)
+Resultat attendu : Une liste avec les 2 lignes et les informations complètes
+
+Test 1.2 : testFichierVide
+Description : Lecture d'un fichier vide
+Resultat attendu : Une liste vide retournée
+
+Test 1.3 : testInformationManquante
+Description : Lecture d'une ligne avec le nombre d'octets envoyés : -
+Resultat attendu : Une liste avec la ligne où le - est remplacé par un 0
