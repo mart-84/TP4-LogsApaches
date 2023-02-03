@@ -57,7 +57,7 @@ then
   sRun="$sRun 2>temperr.txt"
 fi
 
-echo $sRun
+echo $sRun | fold -w 60 -s 
 # execute the command line
 eval $sRun
 returnCode=$?

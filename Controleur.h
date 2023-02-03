@@ -18,6 +18,7 @@ using namespace std;
 #include "Statistiques.h"
 
 //------------------------------------------------------------- Constantes
+const string baseUrl = "http://intranet-if.insa-lyon.fr";
 
 //------------------------------------------------------------------ Types
 
@@ -60,6 +61,10 @@ public:
 
 protected:
     //----------------------------------------------------- Méthodes protégées
+    void nettoyerLogs();
+
+    string nettoyerUrl(const string &);
+
     void filtrerLogs();
 
     void filtrerLogsHeure();

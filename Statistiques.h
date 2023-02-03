@@ -18,7 +18,6 @@ using namespace std;
 #include "Graphe.h"
 
 //------------------------------------------------------------- Constantes
-const string baseUrl = "http://intranet-if.insa-lyon.fr";
 
 //------------------------------------------------------------------ Types
 // Graphe par liste d'adjacence
@@ -69,7 +68,6 @@ public:
 
 protected:
     //----------------------------------------------------- Méthodes protégées
-    string nettoyerUrl(const string &);
 
     //----------------------------------------------------- Attributs protégés
     const list<LigneLog> & donnees;

@@ -16,6 +16,7 @@ using namespace std;
 #include <fstream>
 #include <list>
 #include <map>
+#include <algorithm>
 
 //------------------------------------------------------ Include personnel
 #include "Controleur.h"
@@ -39,7 +40,7 @@ void Controleur::Demarrer()
     ifstream fichierLogs(commande.fichierLogs);
     if (!fichierLogs)
     {
-        cout << "Erreur à l'ouverture du fichier de logs" << endl;
+        cerr << "Erreur à l'ouverture du fichier de logs" << endl;
         return;
     }
 
@@ -47,6 +48,7 @@ void Controleur::Demarrer()
     anal.LireFichier();
 
     logs = anal.GetLogs();
+    nettoyerLogs();
     filtrerLogs();
 
     Statistiques stat(logs);
@@ -85,6 +87,36 @@ Controleur::~Controleur()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+void Controleur::nettoyerLogs()
+{
+    for_each(logs.begin(), logs.end(), [this](LigneLog &log) {
+        log.cible = nettoyerUrl(log.cible);
+        log.source = nettoyerUrl(log.source);
+    });
+}
+
+string Controleur::nettoyerUrl(const string & url)
+// Algorithme :
+//
+{
+    string cleanUrl(url);
+    size_t pos = cleanUrl.find('?', 0);
+    if (pos != string::npos)
+    {
+        cleanUrl = url.substr(0, pos);
+    }
+    pos = cleanUrl.find(';', 0);
+    if (pos != string::npos)
+    {
+        cleanUrl = url.substr(0, pos);
+    }
+    if (cleanUrl.find(baseUrl, 0) == 0)
+    {
+        cleanUrl = cleanUrl.substr(baseUrl.size());
+    }
+    return cleanUrl;
+} //----- Fin de nettoyerUrl
+
 void Controleur::filtrerLogs()
 {
     if(commande.exclusion)
@@ -105,12 +137,12 @@ void Controleur::filtrerLogsType()
 void Controleur::filtrerLogsHeure()
 {
     int horaire(commande.heure);
-    cout << "Warning : only hits between "<<horaire<<"h and "<<horaire+1
-         <<"h have been taken into account"<<endl;
     logs.remove_if([horaire](const LigneLog & logs){
         return logs.date.heure != horaire;
     });
-    
+
+    cerr << "Warning : only hits between " << horaire << "h and " 
+         << horaire + 1 << "h have been taken into account" << endl;
 }
 
 void Controleur::genererGraphe(Statistiques & stat)
@@ -118,11 +150,12 @@ void Controleur::genererGraphe(Statistiques & stat)
     ofstream o(commande.fichierGraphe);
     if(!o)
     {
-        cout<<"Erreur à l'ouverture du fichier de graphe" << endl;
+        cerr << "Erreur à l'ouverture du fichier de graphe" << endl;
         return;
     }
     GenerateurGraphe gg(o, stat.GetGraph());
     gg.ExporterGraphe();
+    cout << "Graphe genere dans le fichier " << commande.fichierGraphe << endl;
 }
 
 void Controleur::afficherTop10(Statistiques & stat)
@@ -132,7 +165,7 @@ void Controleur::afficherTop10(Statistiques & stat)
          it != result.rend();
          ++it)
     {
-        cout << it->second << "\t " << it->first << " hits" << endl;
+        cout << it->second << " - " << it->first << " hits" << endl;
     }
 }
 

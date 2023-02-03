@@ -78,9 +78,9 @@ clean clear :
 full_clean: clean
 	$(RM) makefile_data$(PS)dependencies > $(NULL_FILE) 2>&1
 
-test: all
+test: 
 	$(ECHO) ======= STARTING TESTS =======
-	cd Tests; ./mktest.sh
+	@cd Tests; ./mktest.sh
 
 
 ifneq ($(findstring create, $(MAKECMDGOALS)),)
