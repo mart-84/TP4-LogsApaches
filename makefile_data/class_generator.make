@@ -21,11 +21,14 @@ endif
 
 create_test:
 ifeq ($(NAME),)
-	$(ECHO) Il faut choisir un nom pour le test avec l'option NAME=...
+	$(ECHO) "Il faut choisir un nom pour le test avec l'option NAME=..."
 else
-	@sed "s/Xxx/$(NAME)/g" makefile_data$(PS)squelettes$(PS)Test.cpp > Tests$(PS)$(NAME).cpp
-	@sed -i -e "s|%DATE%|$(DATE)|g" -e "s/%YEAR%/$(YEAR)/g" -e "s/%EMAIL%/$(EMAIL)/g" -e "s/%AUTHOR%/$(AUTEUR)/g" Tests$(PS)$(NAME).cpp
-	$(ECHO) ======= Test '$(NAME)' : OK =======
+	@mkdir Tests$(PS)$(NAME)
+	@touch Tests$(PS)$(NAME)$(PS)run
+	@touch Tests$(PS)$(NAME)$(PS)description
+	@touch Tests$(PS)$(NAME)$(PS)std.out
+	@touch Tests$(PS)$(NAME)$(PS)after
+	@touch Tests$(PS)$(NAME)$(PS)$(NAME).cpp
 endif
 
 .PHONY: create_class create_test
