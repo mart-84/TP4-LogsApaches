@@ -159,6 +159,13 @@ fi
 echo "-----------------------------------------------------------"
 echo 
 
+# clean directory if after file is specified
+if [ -r "after" ]
+then
+  after=`cat after`
+  eval $after
+fi
+
 cd "$execDir"
 
 # log result in $2 if filename provided
@@ -175,4 +182,3 @@ then
 fi
 
 exit $resultGlobal
-
