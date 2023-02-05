@@ -20,10 +20,6 @@ using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-// Graphe par liste d'adjacence
-typedef unordered_map<string, int> Precedents;      // Documents desquels on arrive (sources) + pondérations
-typedef pair<int, Precedents> DocumentInfos;        // Total des hits + liste des documents
-typedef unordered_map<string, DocumentInfos> Graph; // Stat d'un document : chaque doc (cible) + ses infos
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Statistiques>
@@ -50,7 +46,7 @@ public:
     // Contrat :
     //
 
-    const Graph & GetGraph() const;
+    const Graph &GetGraph() const;
     // Mode d'emploi :
     //
     // Contrat :
@@ -77,7 +73,7 @@ protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
-    const list<LigneLog> & donnees;
+    const list<LigneLog> &donnees;
     Graph graphStat;
 };
 
