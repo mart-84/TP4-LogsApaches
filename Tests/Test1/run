@@ -1,5 +1,0 @@
-g++ -c ../../AnalyseurLogs.cpp;
-g++ -c ../../LigneLog.cpp;
-g++ -c Test01.cpp;
-g++ -o Test01 Test01.o AnalyseurLogs.o LigneLog.o;
-./Test01

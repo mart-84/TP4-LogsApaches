@@ -24,11 +24,11 @@ ifeq ($(NAME),)
 	$(ECHO) "Il faut choisir un nom pour le test avec l'option NAME=..."
 else
 	@mkdir Tests$(PS)$(NAME)
-	@touch Tests$(PS)$(NAME)$(PS)run
-	@touch Tests$(PS)$(NAME)$(PS)description
-	@touch Tests$(PS)$(NAME)$(PS)std.out
-	@touch Tests$(PS)$(NAME)$(PS)after
-	@touch Tests$(PS)$(NAME)$(PS)$(NAME).cpp
+	$(CP) makefile_data$(PS)squelettes$(PS)Test$(PS)run Tests$(PS)$(NAME)$(PS)run
+	$(CP) makefile_data$(PS)squelettes$(PS)Test$(PS)description Tests$(PS)$(NAME)$(PS)description
+	$(CP) makefile_data$(PS)squelettes$(PS)Test$(PS)std.out Tests$(PS)$(NAME)$(PS)std.out
+	$(CP) makefile_data$(PS)squelettes$(PS)Test$(PS)after Tests$(PS)$(NAME)$(PS)after
+	$(CP) makefile_data$(PS)squelettes$(PS)Test$(PS)Test.cpp Tests$(PS)$(NAME)$(PS)Test.cpp
 endif
 
 .PHONY: create_class create_test

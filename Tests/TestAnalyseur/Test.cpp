@@ -4,6 +4,11 @@ using namespace std;
 #include "../../LigneLog.h"
 #include "../../AnalyseurLogs.h"
 
+// --------------------------------------------------------------------------------
+// Test de l'analyseur des logs, qui lit le fichier et crée la liste de LigneLog
+// --------------------------------------------------------------------------------
+
+
 // Description : Lecture du fichier test.log (2 lignes)
 // Resultat attendu : Une liste avec les 2 lignes et les informations complètes
 void testFichierNormal()

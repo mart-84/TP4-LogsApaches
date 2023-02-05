@@ -6,3 +6,4 @@ analog
 .vscode/
 makefile_data/dependencies/*.make
 *.dot
+Tests/results.csv
