@@ -1,37 +1,28 @@
 /*************************************************************************
-                           Statistiques  -  description
+                           Xxx  -  description
                              -------------------
-    début                : 27/01/2023
-    copyright            : (C) 2023 par Martin Bonnefoy, Ambre Hutier
-    e-mail               : martin.bonnefoy@insa-lyon.fr; ambre.hutier@insa-lyon.fr
+    début                : %DATE%
+    copyright            : (C) %YEAR% par %AUTHOR%
+    e-mail               : %EMAIL%
 *************************************************************************/
 
-//---------- Interface de la classe <Statistiques> (fichier Statistiques.h) ----------------
-#if !defined(STATISTIQUES_H)
-#define STATISTIQUES_H
+//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
+#if !defined(XXX_H)
+#define XXX_H
 
 //--------------------------------------------------- Interfaces utilisées
-using namespace std;
-#include <list>
-#include <map>
-#include "LigneLog.h"
-#include "Graphe.h"
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-// Graphe par liste d'adjacence
-typedef unordered_map<string, int> Precedents;      // Documents desquels on arrive (sources) + pondérations
-typedef pair<int, Precedents> DocumentInfos;        // Total des hits + liste des documents
-typedef unordered_map<string, DocumentInfos> Graph; // Stat d'un document : chaque doc (cible) + ses infos
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Statistiques>
+// Rôle de la classe <Xxx>
 //
 //
 //------------------------------------------------------------------------
 
-class Statistiques
+class Xxx
 {
     //----------------------------------------------------------------- PUBLIC
 
@@ -43,22 +34,27 @@ public:
     // Contrat :
     //
 
-    void CalculerStatistiques();
-
-    multimap<int, string> GetTop10() const;
-
-    const Graph & GetGraph() const;
-
     //------------------------------------------------- Surcharge d'opérateurs
-
-    //-------------------------------------------- Constructeurs - destructeur
-    Statistiques(const list<LigneLog> &);
+    Xxx &operator=(const Xxx &autreXxx);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Statistiques();
+    //-------------------------------------------- Constructeurs - destructeur
+    Xxx(const Xxx &autreXxx);
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
+
+    Xxx();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+    virtual ~Xxx();
     // Mode d'emploi :
     //
     // Contrat :
@@ -70,10 +66,8 @@ protected:
     //----------------------------------------------------- Méthodes protégées
 
     //----------------------------------------------------- Attributs protégés
-    const list<LigneLog> & donnees;
-    Graph graphStat;
 };
 
-//-------------------------------- Autres définitions dépendantes de <Statistiques>
+//-------------------------------- Autres définitions dépendantes de <Xxx>
 
-#endif // STATISTIQUES_H
+#endif // XXX_H

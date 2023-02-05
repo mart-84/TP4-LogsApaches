@@ -11,7 +11,7 @@ endif
 
 MAIN = main
 EXEC = analog
-INT = LigneLog.h AnalyseurLogs.h Statistiques.h GenerateurGraphe.h Controleur.h
+INT = LigneLog.h AnalyseurLogs.h Statistiques.h GenerateurGraphe.h Controleur.h VerificateurCommande.h
 REAL = $(INT:.h=.c)
 OBJ = $(INT:.h=.o) $(MAIN).o
 
@@ -78,11 +78,9 @@ clean clear :
 full_clean: clean
 	$(RM) makefile_data$(PS)dependencies > $(NULL_FILE) 2>&1
 
-test: all
-	-@mkdir bin > $(NULL_FILE) 2>&1 ||:
-	@$(CP) $(EXEC) bin$(PS)$(EXEC) > $(NULL_FILE) 2>&1
+test: 
 	$(ECHO) ======= STARTING TESTS =======
-	cd Tests; ./mktest.sh
+	@cd Tests; ./mktest.sh
 
 
 ifneq ($(findstring create, $(MAKECMDGOALS)),)

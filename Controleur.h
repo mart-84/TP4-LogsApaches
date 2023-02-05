@@ -13,7 +13,12 @@
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;
 
+#include "VerificateurCommande.h"
+#include "LigneLog.h"
+#include "Statistiques.h"
+
 //------------------------------------------------------------- Constantes
+const string baseUrl = "http://intranet-if.insa-lyon.fr";
 
 //------------------------------------------------------------------ Types
 
@@ -35,10 +40,12 @@ public:
     // Contrat :
     //
 
+    void Demarrer();
+
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur
-    Controleur();
+    Controleur(VerificateurCommande &);
     // Mode d'emploi :
     //
     // Contrat :
@@ -54,10 +61,26 @@ public:
 
 protected:
     //----------------------------------------------------- Méthodes protégées
+    void nettoyerLogs();
+
+    string nettoyerUrl(const string &);
+
+    void filtrerLogs();
+
+    void filtrerLogsHeure();
+
+    void filtrerLogsType();
+
+    void genererGraphe(Statistiques &);
+
+    void afficherTop10(Statistiques &);
 
     //----------------------------------------------------- Attributs protégés
+    VerificateurCommande & commande;
+    list<LigneLog> logs;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Controleur>
+bool typeInvalide(const LigneLog &);
 
 #endif // CONTROLEUR_H

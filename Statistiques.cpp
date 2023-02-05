@@ -35,9 +35,9 @@ void Statistiques::CalculerStatistiques()
 {
     for (list<LigneLog>::const_iterator it = donnees.cbegin(); it != donnees.cend(); ++it)
     {
-        DocumentInfos &info(graphStat[nettoyerUrl(it->cible)]);
+        DocumentInfos &info(graphStat[it->cible]);
         ++info.first;
-        ++info.second[nettoyerUrl(it->source)];
+        ++info.second[it->source];
         // normalement ça marche, donc on touche pas
     }
 } //----- Fin de CalculerStatistiques
@@ -97,26 +97,3 @@ Statistiques::~Statistiques()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-string Statistiques::nettoyerUrl(const string & url)
-// Algorithme :
-//
-{
-    string cleanUrl(url);
-    size_t pos = cleanUrl.find('?', 0);
-    if (pos != string::npos)
-    {
-        cleanUrl = url.substr(0, pos);
-    }
-    pos = cleanUrl.find(';', 0);
-    if (pos != string::npos)
-    {
-        cleanUrl = url.substr(0, pos);
-    }
-    if (cleanUrl.find(baseUrl, 0) == 0)
-    {
-        cleanUrl = cleanUrl.substr(baseUrl.size());
-    }
-    return cleanUrl;
-} //----- Fin de retirerBaseUrl
-
-

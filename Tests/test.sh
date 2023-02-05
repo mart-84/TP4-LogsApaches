@@ -57,7 +57,7 @@ then
   sRun="$sRun 2>temperr.txt"
 fi
 
-echo $sRun
+echo $sRun | fold -w 60 -s 
 # execute the command line
 eval $sRun
 returnCode=$?
@@ -92,6 +92,7 @@ then
     echo "                                       Stdout      : FAILED"
     resultOut=0
     resultGlobal=0
+    diff -wB -y --side-by-side  temp.txt std.out
   fi
   # clean temporary out file
   rm temp.txt
@@ -158,6 +159,13 @@ fi
 echo "-----------------------------------------------------------"
 echo 
 
+# clean directory if after file is specified
+if [ -r "after" ]
+then
+  after=`cat after`
+  eval $after
+fi
+
 cd "$execDir"
 
 # log result in $2 if filename provided
@@ -174,4 +182,3 @@ then
 fi
 
 exit $resultGlobal
-

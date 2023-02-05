@@ -24,10 +24,11 @@ Fichiers de configuration :
 - *.outfile : un ou plusieurs fichiers devant être produits par le programme 
 (facultatif/validation*)
   si le fichier s'appelle exemple.txt.outfile, il sera comparé à exemple.txt
+- after (facultatif) : nettoyage du dossier après l'exécution du test
+  (exemple: suppression des fichiers objets, exécutables, ...)
 
 *validation indique que le script va tester la conformité, si cette conformité 
-n'est pas 
-satisfaite, il l'indiquera
+n'est pas satisfaite, il l'indiquera
 
 -------------------------------------------------------------------------------
 mktest.sh
