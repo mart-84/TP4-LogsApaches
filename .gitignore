@@ -7,3 +7,4 @@ makefile_data/squelettes
 .vscode/
 makefile_data/dependencies/*.make
 *.dot
+GenerateurGraphe.cpp
