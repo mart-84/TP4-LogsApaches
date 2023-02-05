@@ -27,7 +27,7 @@ typedef unordered_map<string, DocumentInfos> Graph; // Stat d'un document : chaq
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Statistiques>
-//
+// Fait les différents calculs possibles
 //
 //------------------------------------------------------------------------
 
@@ -37,17 +37,24 @@ class Statistiques
 
 public:
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
+
+    void CalculerStatistiques();
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    void CalculerStatistiques();
-
     multimap<int, string> GetTop10() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     const Graph & GetGraph() const;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     //------------------------------------------------- Surcharge d'opérateurs
 

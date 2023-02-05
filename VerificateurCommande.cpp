@@ -40,7 +40,8 @@ VerificateurCommande::operator bool() const
 //-------------------------------------------- Constructeurs - destructeur
 VerificateurCommande::VerificateurCommande(int argc, char** argv)
 // Algorithme :
-//
+// lit chaque élément de la commande, récupere les informations 
+// et vérifie qu'il n'y a pas eu d'erreurs dans la commande
 {
 #ifdef MAP
     cout << "Appel au constructeur de <VerificateurCommande> sur " << this << endl;

@@ -29,7 +29,7 @@ struct Date {
 
 //------------------------------------------------------------------------
 // Rôle de la classe <LigneLog>
-//
+// Structure d'une ligne d'un fichier
 //
 //------------------------------------------------------------------------
 
@@ -51,11 +51,6 @@ public:
     string userAgent;
     
     //----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
     //------------------------------------------------- Surcharge d'opérateurs
 

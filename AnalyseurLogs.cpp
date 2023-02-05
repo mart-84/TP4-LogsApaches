@@ -115,6 +115,7 @@ void AnalyseurLogs::lireLigne()
     getline(fichierLog, buffer); // permet de "vider" ce qu'il reste de la ligne 'espace vide, retour à la ligne, ...)
 
     lignes.push_back(ligne);
+    
 } //----- Fin de lireLigne
 
 string AnalyseurLogs::lireChamp(char separateur)
@@ -124,4 +125,5 @@ string AnalyseurLogs::lireChamp(char separateur)
     char buffer[500];
     fichierLog.getline(buffer, 499, separateur);
     return string(buffer);
+
 } //----- Fin de lireChamp

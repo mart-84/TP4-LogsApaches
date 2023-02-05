@@ -21,7 +21,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <GenerateurGraphe>
-//
+// Cette classe permet de génerer le fichier .dot qui permettra de générer un graphe
 //
 //------------------------------------------------------------------------
 
@@ -38,6 +38,9 @@ public:
     //
 
     void ExporterGraphe();
+    // Mode d'emploi :
+    //
+    
 
     //------------------------------------------------- Surcharge d'opérateurs
 
@@ -45,13 +48,9 @@ public:
     GenerateurGraphe(ofstream &, const Graph &);
     // Mode d'emploi :
     //
-    // Contrat :
-    //
 
     virtual ~GenerateurGraphe();
     // Mode d'emploi :
-    //
-    // Contrat :
     //
 
     //------------------------------------------------------------------ PRIVE

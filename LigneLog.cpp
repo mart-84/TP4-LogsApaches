@@ -30,6 +30,8 @@ using namespace std;
 
 //------------------------------------------------- Surcharge d'opérateurs
 ostream& operator<<(ostream & os, LigneLog log)
+// Algorithme :
+//
 {
     os << log.ip << " "
        << log.logname << " "
@@ -50,7 +52,7 @@ ostream& operator<<(ostream & os, LigneLog log)
        << log.userAgent << "\"";
        
     return os;
-}
+} //----- Fin de operator<<
 
 //-------------------------------------------- Constructeurs - destructeur
 LigneLog::LigneLog()

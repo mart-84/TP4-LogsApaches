@@ -20,8 +20,8 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <VerificateurCommande>
-//
-//
+// vérifie que la commande effectuée est correcte et récupère les différentes 
+// informations de la commande
 //------------------------------------------------------------------------
 
 class VerificateurCommande

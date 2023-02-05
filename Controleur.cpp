@@ -36,6 +36,8 @@ using namespace std;
 //} //----- Fin de Méthode
 
 void Controleur::Demarrer()
+// Algorithme :
+//
 {
     ifstream fichierLogs(commande.fichierLogs);
     if (!fichierLogs)
@@ -60,7 +62,7 @@ void Controleur::Demarrer()
     }
 
     afficherTop10(stat);
-}
+} //----- Fin de Demarrer
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -88,12 +90,14 @@ Controleur::~Controleur()
 
 //----------------------------------------------------- Méthodes protégées
 void Controleur::nettoyerLogs()
+// Algorithme :
+//
 {
     for_each(logs.begin(), logs.end(), [this](LigneLog &log) {
         log.cible = nettoyerUrl(log.cible);
         log.source = nettoyerUrl(log.source);
     });
-}
+} //----- Fin de nettoyerLogs
 
 string Controleur::nettoyerUrl(const string & url)
 // Algorithme :
@@ -118,6 +122,8 @@ string Controleur::nettoyerUrl(const string & url)
 } //----- Fin de nettoyerUrl
 
 void Controleur::filtrerLogs()
+// Algorithme :
+// regarde si besoin de filtrer le Logs 
 {
     if(commande.exclusion)
     {
@@ -127,14 +133,18 @@ void Controleur::filtrerLogs()
     {
         filtrerLogsHeure();
     }
-}
+} //----- Fin de filtrerLogs
 
 void Controleur::filtrerLogsType()
+// Algorithme :
+// filtrage du Logs par type
 {
     logs.remove_if(typeInvalide);
-}
+} //----- Fin de filtrerLogsType
 
 void Controleur::filtrerLogsHeure()
+// Algorithme :
+// filtrage du Logs par heure
 {
     int horaire(commande.heure);
     logs.remove_if([horaire](const LigneLog & logs){
@@ -143,9 +153,11 @@ void Controleur::filtrerLogsHeure()
 
     cerr << "Warning : only hits between " << horaire << "h and " 
          << horaire + 1 << "h have been taken into account" << endl;
-}
+} //----- Fin de filtrerLogsHeure
 
 void Controleur::genererGraphe(Statistiques & stat)
+// Algorithme :
+//
 {
     ofstream o(commande.fichierGraphe);
     if(!o)
@@ -156,9 +168,11 @@ void Controleur::genererGraphe(Statistiques & stat)
     GenerateurGraphe gg(o, stat.GetGraph());
     gg.ExporterGraphe();
     cout << "Graphe genere dans le fichier " << commande.fichierGraphe << endl;
-}
+} //----- Fin de genererGraphe
 
 void Controleur::afficherTop10(Statistiques & stat)
+// Algorithme :
+//
 {
     multimap<int, string> result = stat.GetTop10();
     for (multimap<int, string>::reverse_iterator it = result.rbegin();
@@ -167,9 +181,11 @@ void Controleur::afficherTop10(Statistiques & stat)
     {
         cout << it->second << " - " << it->first << " hits" << endl;
     }
-}
+} //----- Fin de afficherTop10
 
 bool typeInvalide(const LigneLog & logs)
+// Algorithme :
+//
 {
     size_t pos = logs.cible.rfind('.');
     if (pos == string::npos)
@@ -181,4 +197,4 @@ bool typeInvalide(const LigneLog & logs)
         && typeFichier != ".png" && typeFichier != ".jpg" 
         && typeFichier != ".jpeg" && typeFichier != ".gif" 
         && typeFichier != ".ico" && typeFichier != ".bmp");
-}
+} //----- Fin de typeInvalide

@@ -24,7 +24,7 @@ const string baseUrl = "http://intranet-if.insa-lyon.fr";
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Controleur>
-//
+// Fait le lien entre les différentes classes existantes
 //
 //------------------------------------------------------------------------
 
@@ -41,6 +41,10 @@ public:
     //
 
     void Demarrer();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     //------------------------------------------------- Surcharge d'opérateurs
 
@@ -62,18 +66,46 @@ public:
 protected:
     //----------------------------------------------------- Méthodes protégées
     void nettoyerLogs();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     string nettoyerUrl(const string &);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     void filtrerLogs();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     void filtrerLogsHeure();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     void filtrerLogsType();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     void genererGraphe(Statistiques &);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     void afficherTop10(Statistiques &);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     //----------------------------------------------------- Attributs protégés
     VerificateurCommande & commande;
@@ -82,5 +114,9 @@ protected:
 
 //-------------------------------- Autres définitions dépendantes de <Controleur>
 bool typeInvalide(const LigneLog &);
+// Mode d'emploi :
+//
+// Contrat :
+//
 
 #endif // CONTROLEUR_H

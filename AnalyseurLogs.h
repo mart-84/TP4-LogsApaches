@@ -22,7 +22,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <AnalyseurLogs>
-//
+// Cette classe sert à ouvrir le fichier .log et récuperer les informations du fichier
 //
 //------------------------------------------------------------------------
 
@@ -70,8 +70,16 @@ public:
 protected:
     //----------------------------------------------------- Méthodes protégées
     void lireLigne();
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     string lireChamp(char separateur = ' ');
+    // Mode d'emploi :
+    // 
+    // Contrat :
+    //
 
     //----------------------------------------------------- Attributs protégés
     list<LigneLog> lignes; 
