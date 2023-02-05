@@ -6,4 +6,3 @@ analog
 .vscode/
 makefile_data/dependencies/*.make
 *.dot
-GenerateurGraphe.cpp
