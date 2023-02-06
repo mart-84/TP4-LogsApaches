@@ -71,8 +71,7 @@ memcheck:
 
 clean clear :
 	$(RM) $(EXEC) $(OBJ) $(OBJ:.o=.d.o) $(TEST_EXEC) $(TEST_OBJ) $(TEST_OBJ:.o=.d.o) \
-		$(subst /,$(PS),$(TEST_MAIN_OBJ)) $(subst /,$(PS),$(TEST_MAIN_OBJ:.o=.d.o)) core \
-		bin$(PS)$(EXEC) > $(NULL_FILE) 2>&1
+		$(subst /,$(PS),$(TEST_MAIN_OBJ)) $(subst /,$(PS),$(TEST_MAIN_OBJ:.o=.d.o)) core > $(NULL_FILE) 2>&1
 	$(ECHO) ======= CLEANING : OK =======
 
 full_clean: clean
