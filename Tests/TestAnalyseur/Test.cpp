@@ -50,15 +50,19 @@ void testInformationManquante()
     }
 }
 
+void betweenTest()
+{
+    cout << endl
+         << "------------------------------" << endl
+         << endl;
+}
+
 int main()
 {
-    testFichierNormal();
-    cout << endl
-         << "------------------------------" << endl
-         << endl;
-    testFichierVide();
-    cout << endl
-         << "------------------------------" << endl
-         << endl;
-    testInformationManquante();
+    auto tests = {testFichierNormal, testFichierVide, testInformationManquante};
+    for (auto &test : tests)
+    {
+        test();
+        betweenTest();
+    }
 }

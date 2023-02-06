@@ -44,7 +44,7 @@ public:
     //------------------------------------------------- Surcharge d'opérateurs
 
     //-------------------------------------------- Constructeurs - destructeur
-    VerificateurCommande(int argc, char** argv);
+    VerificateurCommande(int argc, const char** argv);
     // Mode d'emploi :
     //
     // Contrat :

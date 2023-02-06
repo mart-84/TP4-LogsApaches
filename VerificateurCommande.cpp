@@ -38,7 +38,7 @@ VerificateurCommande::operator bool() const
 } //----- Fin de operator bool
 
 //-------------------------------------------- Constructeurs - destructeur
-VerificateurCommande::VerificateurCommande(int argc, char** argv)
+VerificateurCommande::VerificateurCommande(int argc, const char** argv)
 // Algorithme :
 // lit chaque élément de la commande, récupere les informations 
 // et vérifie qu'il n'y a pas eu d'erreurs dans la commande

@@ -18,11 +18,22 @@ void test2()
 {
 }
 
-int main()
+void betweenTest()
 {
-    test1();
+    cerr << endl
+         << "------------------------------" << endl
+         << endl;
     cout << endl
          << "------------------------------" << endl
          << endl;
-    test2();
+}
+
+int main()
+{
+    auto tests = {test1, test2};
+    for (auto &test : tests)
+    {
+        test();
+        betweenTest();
+    }
 }

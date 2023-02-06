@@ -5,7 +5,7 @@ using namespace std;
 #include "VerificateurCommande.h"
 #include "Controleur.h"
 
-int main(int argc, char **argv)
+int main(int argc, const char **argv)
 {
     VerificateurCommande commande(argc, argv);
     if (commande)

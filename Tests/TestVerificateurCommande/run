@@ -1,2 +1,2 @@
-g++ -o Test Test.cpp;
+g++ -o Test Test.cpp ../../VerificateurCommande.cpp;
 ./Test

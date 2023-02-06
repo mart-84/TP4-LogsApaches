@@ -1,9 +1,25 @@
-Test : Test de ....
+Test : Test de la vérification des arguments de la commande
 
-Test 1 : test1
+Test 1 : testAucunArgument
+Description : Aucun argument n'est passé à la commande
+Resultat attendu : commande vaut false en bool et affichage d'un message sur la sortie d'erreur
+
+Test 2 : testHeure
 Description : 
 Resultat attendu : 
 
-Test 2 : test2
+Test 3 : testExclusionTypes
 Description : 
 Resultat attendu : 
+
+Test 4 : testGenerationGraphe
+Description : 
+Resultat attendu : 
+
+Test 5 : testFichierNonLog
+Description : 
+Resultat attendu : 
+
+Test 6 : testArgumentsCorrects
+Description : Des combinaisons valides d'arguments sont passées à la commande
+Resultat attendu : commande vaut toujours true et rien n'est affiché dans la sortie d'erreur
