@@ -1,0 +1,2 @@
+g++ -o Test Test.cpp;
+./Test
