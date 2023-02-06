@@ -5,21 +5,25 @@ Description : Aucun argument n'est passé à la commande
 Resultat attendu : commande vaut false en bool et affichage d'un message sur la sortie d'erreur
 
 Test 2 : testHeure
-Description : 
-Resultat attendu : 
+Description : L'option -t est mal orthographiée : pas de valeur, une valeur alphabétique, des valeurs en dehors de l'intervalle [0, 23]
+Resultat attendu : Des messages sur la sortie d'erreur et commande vaut toujours false
 
 Test 3 : testExclusionTypes
-Description : 
-Resultat attendu : 
+Description : La commande a un argument -e
+Resultat attendu : Rien de spécial, commande vaut true
 
 Test 4 : testGenerationGraphe
-Description : 
-Resultat attendu : 
+Description : La valeur de l'argument -g n'est pas un .dot ou aucune valeur n'est pas fournie
+Resultat attendu : Un message sur la sortie + commande vaut false
 
 Test 5 : testFichierNonLog
-Description : 
-Resultat attendu : 
+Description : Le fichier à analyser n'est pas un .log
+Resultat attendu : commande vaut false en bool + un message sur la sortie d'erreur
 
 Test 6 : testArgumentsCorrects
 Description : Des combinaisons valides d'arguments sont passées à la commande
 Resultat attendu : commande vaut toujours true et rien n'est affiché dans la sortie d'erreur
+
+Test 7 : testArgumentIncorrect
+Description : La commande a un argument non prévu
+Resultat attendu : Un message d'erreur + commande vaut false

@@ -2,17 +2,29 @@ Nom du fichier manquant
 
 ------------------------------
 
+La valeur apres le -t n'est pas un entier
+La valeur apres le -t n'est pas un entier
+L'heure indiquee n'est pas valide
+L'heure indiquee n'est pas valide
 
 ------------------------------
 
 
 ------------------------------
 
+Le fichier du graphe doit etre un .dot
+Le fichier du graphe doit etre un .dot
+
+------------------------------
+
+Le fichier a analyser doit etre un .log
 
 ------------------------------
 
 
 ------------------------------
 
+Option invalide : -a
+Option invalide : -aaaaaaaaa
 
 ------------------------------

@@ -111,6 +111,7 @@ then
     echo "                                       Stderr      : FAILED"
     resultErr=0
     resultGlobal=0
+    diff -wB -y --side-by-side  temperr.txt stderr.out
   fi
   # clean temporary out file
   rm temperr.txt

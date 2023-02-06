@@ -42,7 +42,7 @@ void Controleur::Demarrer()
     ifstream fichierLogs(commande.fichierLogs);
     if (!fichierLogs)
     {
-        cerr << "Erreur à l'ouverture du fichier de logs" << endl;
+        cerr << "Erreur a l'ouverture du fichier de logs" << endl;
         return;
     }
 
@@ -56,7 +56,7 @@ void Controleur::Demarrer()
     Statistiques stat(logs);
     stat.CalculerStatistiques();
 
-    if(commande.genererGraphe)
+    if (commande.genererGraphe)
     {
         genererGraphe(stat);
     }
@@ -67,7 +67,7 @@ void Controleur::Demarrer()
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
-Controleur::Controleur(VerificateurCommande& cmd)
+Controleur::Controleur(VerificateurCommande &cmd)
     : commande(cmd)
 // Algorithme :
 //
@@ -93,13 +93,13 @@ void Controleur::nettoyerLogs()
 // Algorithme :
 //
 {
-    for_each(logs.begin(), logs.end(), [this](LigneLog &log) {
+    for_each(logs.begin(), logs.end(), [this](LigneLog &log)
+             {
         log.cible = nettoyerUrl(log.cible);
-        log.source = nettoyerUrl(log.source);
-    });
+        log.source = nettoyerUrl(log.source); });
 } //----- Fin de nettoyerLogs
 
-string Controleur::nettoyerUrl(const string & url)
+string Controleur::nettoyerUrl(const string &url)
 // Algorithme :
 //
 {
@@ -123,13 +123,13 @@ string Controleur::nettoyerUrl(const string & url)
 
 void Controleur::filtrerLogs()
 // Algorithme :
-// regarde si besoin de filtrer le Logs 
+// regarde si besoin de filtrer le Logs
 {
-    if(commande.exclusion)
+    if (commande.exclusion)
     {
         filtrerLogsType();
     }
-    if(commande.filtrerHeure)
+    if (commande.filtrerHeure)
     {
         filtrerLogsHeure();
     }
@@ -147,22 +147,21 @@ void Controleur::filtrerLogsHeure()
 // filtrage du Logs par heure
 {
     int horaire(commande.heure);
-    logs.remove_if([horaire](const LigneLog & logs){
-        return logs.date.heure != horaire;
-    });
+    logs.remove_if([horaire](const LigneLog &logs)
+                   { return logs.date.heure != horaire; });
 
-    cerr << "Warning : only hits between " << horaire << "h and " 
+    cerr << "Warning : only hits between " << horaire << "h and "
          << horaire + 1 << "h have been taken into account" << endl;
 } //----- Fin de filtrerLogsHeure
 
-void Controleur::genererGraphe(Statistiques & stat)
+void Controleur::genererGraphe(Statistiques &stat)
 // Algorithme :
 //
 {
     ofstream o(commande.fichierGraphe);
-    if(!o)
+    if (!o)
     {
-        cerr << "Erreur à l'ouverture du fichier de graphe" << endl;
+        cerr << "Erreur a l'ouverture du fichier de graphe" << endl;
         return;
     }
     GenerateurGraphe gg(o, stat.GetGraph());
@@ -170,7 +169,7 @@ void Controleur::genererGraphe(Statistiques & stat)
     cout << "Graphe genere dans le fichier " << commande.fichierGraphe << endl;
 } //----- Fin de genererGraphe
 
-void Controleur::afficherTop10(Statistiques & stat)
+void Controleur::afficherTop10(Statistiques &stat)
 // Algorithme :
 //
 {
@@ -183,7 +182,7 @@ void Controleur::afficherTop10(Statistiques & stat)
     }
 } //----- Fin de afficherTop10
 
-bool typeInvalide(const LigneLog & logs)
+bool typeInvalide(const LigneLog &logs)
 // Algorithme :
 //
 {
@@ -193,8 +192,5 @@ bool typeInvalide(const LigneLog & logs)
         return false;
     }
     string typeFichier = logs.cible.substr(pos);
-    return !(typeFichier != ".js" && typeFichier != ".css" 
-        && typeFichier != ".png" && typeFichier != ".jpg" 
-        && typeFichier != ".jpeg" && typeFichier != ".gif" 
-        && typeFichier != ".ico" && typeFichier != ".bmp");
+    return !(typeFichier != ".js" && typeFichier != ".css" && typeFichier != ".png" && typeFichier != ".jpg" && typeFichier != ".jpeg" && typeFichier != ".gif" && typeFichier != ".ico" && typeFichier != ".bmp");
 } //----- Fin de typeInvalide
