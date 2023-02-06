@@ -1,9 +1,22 @@
-Test : Test de ....
+Test : Test de la vérification de la classe Statistiques
 
-Test 1 : test1
-Description : 
-Resultat attendu : 
+Test 1 : testEgaliteTop
+Description : les données du top sont à égalité
+Resultat attendu : affiche les données à égalité l'une derrière l'autre
+ou seulement l'une des deux si dépasse du classement
 
-Test 2 : test2
-Description : 
-Resultat attendu : 
+Test 2 : testGetGraphNonVide
+Description : on crée le graphe à partir de plusieurs données
+Resultat attendu : affichage du graphe
+
+Test 3 : testTop10Vides
+Description : Aucune données dans l'attribut données
+Resultat attendu : aucun résultat à l'affichage 
+
+Test 4 : testTop10
+Description : plus de dix cibles en données
+Resultat attendu : affiche le top 10 des cibles
+
+Test 5 : testGetGraphVide
+Description : on crée le graphe lorsqu'il n'y a aucune données 
+Resultat attendu : affichage d'un graphe vide

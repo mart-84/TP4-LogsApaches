@@ -1,9 +1,14 @@
-Test : Test de ....
+Test : Test de vérifiaction du bon fonctionnement de la classe GenerationGraphe
 
-Test 1 : test1
-Description : 
-Resultat attendu : 
+Test 1 : testExporterGraphe
+Description : graphe avec plusieurs donnees reliées entre elles
+Resultat attendu : génération d'un fichier .dot avec descriptif des éléments
 
-Test 2 : test2
-Description : 
-Resultat attendu : 
+Test 2 : testGrapheVide
+Description : graph de donnees vide
+Resultat attendu : génération d'un fichier .dot vide
+
+Test 3 : testDonneesDisjointes
+Description : graphe avec plusieurs donnees qui ne sont pas sources les unes des autres
+Resultat attendu : génération d'un fichier .dot avec descriptif d'éléments non reliées entre eux
+
