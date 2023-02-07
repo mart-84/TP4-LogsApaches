@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-
 #include "VerificateurCommande.h"
 #include "Controleur.h"
+
 
 int main(int argc, const char **argv)
 {
@@ -16,3 +16,4 @@ int main(int argc, const char **argv)
     }
     return 1;
 }
+

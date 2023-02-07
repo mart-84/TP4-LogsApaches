@@ -55,7 +55,7 @@ void testDonneesDisjointes()
     graph["/page3"].first = 2;
     graph["/page3"].second["/page4"] = 2;
 
-    ofstream fichier("elements.dot");
+    ofstream fichier("elementsDisjoints.dot");
     GenerateurGraphe genere(fichier, graph);
     genere.ExporterGraphe();
 }
