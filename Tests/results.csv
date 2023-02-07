@@ -1,6 +1,6 @@
 Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
 TestAnalyseur;2;1;2;2;1
 TestControleur;2;1;2;2;1
-TestGenerateurGraphe;2;0;2;0;0
+TestGenerateurGraphe;2;1;2;1;1
 TestStatistiques;2;0;2;2;0
 TestVerificateurCommande;2;1;1;2;1

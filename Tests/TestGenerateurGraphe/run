@@ -1,2 +1,2 @@
-g++ -o Test Test.cpp ../../Graphe.cpp ../../GenerateurGraphe.cpp;
+g++ -o Test Test.cpp ../../GenerateurGraphe.cpp;
 ./Test
