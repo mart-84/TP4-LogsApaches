@@ -1,0 +1,8 @@
+digraph {
+	"/page3";
+	"/page2";
+	"/page1";
+	"/page4" -> "/page3" [label="2"];
+	"/page1" -> "/page2" [label="1"];
+	"/page2" -> "/page1" [label="4"];
+}

@@ -44,7 +44,7 @@ void testGetGraphNonVide()
      Graph graph = stat.GetGraph();
      for (Graph::const_iterator it = graph.cbegin(); it != graph.cend(); ++it)
      {
-          cout << *it << endl;
+          cout << it->first << endl;
      }
 }
 
@@ -99,7 +99,7 @@ void testGetGraphVide()
      Graph graphVide = stat.GetGraph();
      for (Graph::const_iterator it = graphVide.cbegin(); it != graphVide.cend(); ++it)
      {
-          cout << *it << endl;
+          cout << it->first << endl;
      }
      
 }
