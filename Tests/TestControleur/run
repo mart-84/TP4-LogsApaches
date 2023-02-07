@@ -1,2 +1,2 @@
-g++ -o Test Test.cpp;
+g++ -o Test Test.cpp ../../AnalyseurLogs.cpp ../../GenerateurGraphe.cpp ../../LigneLog.cpp ../../Controleur.cpp ../../Statistiques.cpp;
 ./Test

@@ -71,12 +71,6 @@ protected:
     // Contrat :
     //
 
-    string nettoyerUrl(const string &);
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
     void filtrerLogs();
     // Mode d'emploi :
     //
@@ -108,11 +102,17 @@ protected:
     //
 
     //----------------------------------------------------- Attributs protégés
-    VerificateurCommande & commande;
+    VerificateurCommande &commande;
     list<LigneLog> logs;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Controleur>
+string nettoyerUrl(const string &);
+// Mode d'emploi :
+//
+// Contrat :
+//
+
 bool typeInvalide(const LigneLog &);
 // Mode d'emploi :
 //

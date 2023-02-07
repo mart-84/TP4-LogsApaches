@@ -93,33 +93,13 @@ void Controleur::nettoyerLogs()
 // Algorithme :
 //
 {
-    for_each(logs.begin(), logs.end(), [this](LigneLog &log)
+    for_each(logs.begin(), logs.end(),
+             [this](LigneLog &log)
              {
-        log.cible = nettoyerUrl(log.cible);
-        log.source = nettoyerUrl(log.source); });
+                 log.cible = nettoyerUrl(log.cible);
+                 log.source = nettoyerUrl(log.source);
+             });
 } //----- Fin de nettoyerLogs
-
-string Controleur::nettoyerUrl(const string &url)
-// Algorithme :
-//
-{
-    string cleanUrl(url);
-    size_t pos = cleanUrl.find('?', 0);
-    if (pos != string::npos)
-    {
-        cleanUrl = url.substr(0, pos);
-    }
-    pos = cleanUrl.find(';', 0);
-    if (pos != string::npos)
-    {
-        cleanUrl = url.substr(0, pos);
-    }
-    if (cleanUrl.find(baseUrl, 0) == 0)
-    {
-        cleanUrl = cleanUrl.substr(baseUrl.size());
-    }
-    return cleanUrl;
-} //----- Fin de nettoyerUrl
 
 void Controleur::filtrerLogs()
 // Algorithme :
@@ -181,6 +161,29 @@ void Controleur::afficherTop10(Statistiques &stat)
         cout << it->second << " - " << it->first << " hits" << endl;
     }
 } //----- Fin de afficherTop10
+
+//-------------------------------- Autres définitions dépendantes de <Controleur>
+string nettoyerUrl(const string &url)
+// Algorithme :
+//
+{
+    string cleanUrl(url);
+    size_t pos = cleanUrl.find('?', 0);
+    if (pos != string::npos)
+    {
+        cleanUrl = url.substr(0, pos);
+    }
+    pos = cleanUrl.find(';', 0);
+    if (pos != string::npos)
+    {
+        cleanUrl = url.substr(0, pos);
+    }
+    if (cleanUrl.find(baseUrl, 0) == 0)
+    {
+        cleanUrl = cleanUrl.substr(baseUrl.size());
+    }
+    return cleanUrl;
+} //----- Fin de nettoyerUrl
 
 bool typeInvalide(const LigneLog &logs)
 // Algorithme :

@@ -1,9 +1,9 @@
-Test : Test de ....
+Test : Test du composant de contrôle général de l'application
 
-Test 1 : test1
-Description : 
-Resultat attendu : 
+Test 1 : testTypeInvalideFoncteur
+Description : Différentes possibilités de type de fichier
+Resultat attendu : false pour les 4 premiers, true pour les autres
 
-Test 2 : test2
-Description : 
-Resultat attendu : 
+Test 2 : testNettoyageUrl
+Description : Suppression des parties après le ? et/ou le ; dans les urls
+Resultat attendu : Les parties non voulues sont supprimées
