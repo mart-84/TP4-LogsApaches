@@ -15,18 +15,15 @@ void testExporterGraphe()
 {
     Graph  graph;
 
-    DocumentInfos &infos(graph["/page1"] );
-    infos.first = 7;
-    infos.second["/page2"] = 4;
-    infos.second["/page3"] = 3;
+    graph["/page1"].first = 7;
+    graph["/page1"].second["/page2"] = 4;
+    graph["/page1"].second["/page3"] = 3;
 
-    DocumentInfos &infos(graph["/page2"] );
-    infos.first = 1;
-    infos.second["/page1"] = 1;
+    graph["/page2"].first = 1;
+    graph["/page2"].second["/page1"] = 1;
 
-    DocumentInfos &infos(graph["/page3"] );
-    infos.first = 2;
-    infos.second["/page2"] = 2;
+    graph["/page3"].first = 2;
+    graph["/page3"].second["/page2"] = 2;
 
     ofstream fichier("elements.dot");
     GenerateurGraphe genere(fichier, graph);
@@ -49,17 +46,14 @@ void testDonneesDisjointes()
 {
      Graph  graph;
 
-    DocumentInfos &infos(graph["/page1"] );
-    infos.first = 4;
-    infos.second["/page2"] = 4;
+    graph["/page1"].first = 4;
+    graph["/page1"].second["/page2"] = 4;
 
-    DocumentInfos &infos(graph["/page2"] );
-    infos.first = 1;
-    infos.second["/page1"] = 1;
+    graph["/page2"].first = 1;
+    graph["/page2"].second["/page1"] = 1;
 
-    DocumentInfos &infos(graph["/page3"] );
-    infos.first = 2;
-    infos.second["/page4"] = 2;
+    graph["/page3"].first = 2;
+    graph["/page3"].second["/page4"] = 2;
 
     ofstream fichier("elements.dot");
     GenerateurGraphe genere(fichier, graph);
