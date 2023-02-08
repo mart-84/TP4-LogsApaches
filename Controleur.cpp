@@ -182,6 +182,10 @@ string nettoyerUrl(const string &url)
     {
         cleanUrl = cleanUrl.substr(baseUrl.size());
     }
+    if (cleanUrl.back() == '/')
+    {
+        cleanUrl = cleanUrl.substr(0, cleanUrl.size() - 1);
+    }
     return cleanUrl;
 } //----- Fin de nettoyerUrl
 
