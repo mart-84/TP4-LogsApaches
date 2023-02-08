@@ -9,7 +9,6 @@ using namespace std;
 // Test des statistiques
 // --------------------------------------------------------------------------------
 
-
 // Description : les données du top sont à égalité
 // Resultat attendu : affiche les données à égalité l'une derrière l'autre
 // ou seulement l'une des deux si dépasse du classement
@@ -28,7 +27,6 @@ void testEgaliteTop()
      {
           cout << it->second << " - " << it->first << " hits" << endl;
      }
-
 }
 
 // Description : on crée le graphe à partir de plusieurs données
@@ -49,7 +47,7 @@ void testGetGraphNonVide()
 }
 
 // Description : Aucune données dans l'attribut données
-// Resultat attendu : aucun résultat à l'affichage 
+// Resultat attendu : aucun résultat à l'affichage
 void testTop10Vides()
 {
      ifstream fichier("vide.log");
@@ -86,7 +84,7 @@ void testTop10()
      }
 }
 
-// Description : on crée le graphe lorsqu'il n'y a aucune données  
+// Description : on crée le graphe lorsqu'il n'y a aucune données
 // Resultat attendu : affichage d'un graphe vide
 void testGetGraphVide()
 {
@@ -96,36 +94,33 @@ void testGetGraphVide()
      list<LigneLog> donnees = anal.GetLogs();
      Statistiques stat(donnees);
      stat.CalculerStatistiques();
-     Graph graphVide = stat.GetGraph();
+     const Graph graphVide = stat.GetGraph();
      for (Graph::const_iterator it = graphVide.cbegin(); it != graphVide.cend(); ++it)
      {
           cout << it->first << endl;
      }
-     
 }
-
 
 int main()
 {
-    testEgaliteTop();
-    cout << endl
-         << "------------------------------" << endl
-         << endl;
-    testGetGraphNonVide();
-    cout << endl
-         << "------------------------------" << endl
-         << endl;
-    testTop10Vides();
-    cout << endl
-         << "------------------------------" << endl
-         << endl;
-    testTop10();
-    cout << endl
-         << "------------------------------" << endl
-         << endl;
-    testGetGraphVide();
-    cout << endl
-         << "------------------------------" << endl
-         << endl;
-         
+     testEgaliteTop();
+     cout << endl
+          << "------------------------------" << endl
+          << endl;
+     testGetGraphNonVide();
+     cout << endl
+          << "------------------------------" << endl
+          << endl;
+     testTop10Vides();
+     cout << endl
+          << "------------------------------" << endl
+          << endl;
+     testTop10();
+     cout << endl
+          << "------------------------------" << endl
+          << endl;
+     testGetGraphVide();
+     cout << endl
+          << "------------------------------" << endl
+          << endl;
 }
