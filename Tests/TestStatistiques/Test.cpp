@@ -42,7 +42,11 @@ void testGetGraphNonVide()
      Graph graph = stat.GetGraph();
      for (Graph::const_iterator it = graph.cbegin(); it != graph.cend(); ++it)
      {
-          cout << it->first << endl;
+          cout << it->first <<" : "<< endl;
+          for (Precedents::const_iterator it2 = it->second.second.cbegin(); it2 != it->second.second.cend(); ++it2)
+        {
+          cout << " -  "<< it2->first << ", " << it2->second  << endl;
+        }
      }
 }
 

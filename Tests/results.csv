@@ -2,5 +2,5 @@ Test ID;Return code validation;Out result;StdErr result;File creation result;Glo
 TestAnalyseur;2;1;2;2;1
 TestControleur;2;1;2;2;1
 TestGenerateurGraphe;2;1;2;1;1
-TestStatistiques;2;0;2;2;0
+TestStatistiques;2;1;2;2;1
 TestVerificateurCommande;2;1;1;2;1
