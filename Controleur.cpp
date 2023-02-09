@@ -199,5 +199,12 @@ bool typeInvalide(const LigneLog &logs)
         return false;
     }
     string typeFichier = logs.cible.substr(pos);
-    return !(typeFichier != ".js" && typeFichier != ".css" && typeFichier != ".png" && typeFichier != ".jpg" && typeFichier != ".jpeg" && typeFichier != ".gif" && typeFichier != ".ico" && typeFichier != ".bmp");
+    return !(typeFichier != ".js" &&
+             typeFichier != ".css" &&
+             typeFichier != ".png" &&
+             typeFichier != ".jpg" &&
+             typeFichier != ".jpeg" &&
+             typeFichier != ".gif" &&
+             typeFichier != ".ico" &&
+             typeFichier != ".bmp");
 } //----- Fin de typeInvalide
